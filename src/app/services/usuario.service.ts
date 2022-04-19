@@ -16,7 +16,6 @@ export class UsuarioService {
   constructor(public _http: HttpClient) { }
 
   login(usuario, obtenerToken = null): Observable<any> {
-
     if(obtenerToken != null){
       usuario.obtenerToken = obtenerToken;
     }

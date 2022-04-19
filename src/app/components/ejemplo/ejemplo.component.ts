@@ -28,7 +28,7 @@ export class EjemploComponent implements OnInit {
 
   constructor(
       private _productoService: ProductosService,
-      private _usuarioService: UsuarioService
+      public _usuarioService: UsuarioService
     ) {
     this.productoModelPost = new Producto('','',0,0,0);
     this.productoModelGetId = new Producto('','',0,0,0);
@@ -54,20 +54,18 @@ export class EjemploComponent implements OnInit {
 
   getProductoId(idProducto){
     this._productoService.obtenerProductoId(idProducto).subscribe(
-      (response) => {
-
+      (response)=>{
+        console.log(response);
         this.productoModelGetId = response.producto;
-        console.log(this.productoModelGetId);
       },
       (error)=>{
-        console.log(<any>error);
 
       }
     )
   }
 
   postProductos(){
-    this._productoService.agregarProducto(this.productoModelPost).subscribe(
+    this._productoService.agregarProducto(this.productoModelPost, this._usuarioService.obtenerToken()).subscribe(
       (response)=>{
         console.log(response);
         this.getProductos();
@@ -79,14 +77,13 @@ export class EjemploComponent implements OnInit {
     )
   }
 
-  putProductos(){
+  putProducto(){
     this._productoService.editarProducto(this.productoModelGetId).subscribe(
       (response)=>{
         console.log(response);
-        this.getProductos()
+        this.getProductos();
       },
       (error)=>{
-        console.log(<any>error);
 
       }
     )

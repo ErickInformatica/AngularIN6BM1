@@ -13,7 +13,10 @@
           <a class="nav-link" routerLink="/registro" routerLinkActive="active">Registro</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/ejemplo" routerLinkActive="active">Ejemplo</a>
+          <a class="nav-link" routerLink="/usuario/ejemplo" routerLinkActive="active">Ejemplo</a>
+        </li>
+        <li class="nav-item" *ngIf="_usuarioService.obtenerIdentidad().rol === 'ADMIN'">
+          <a class="nav-link" routerLink="/admin/graficas" routerLinkActive="active">Graficas</a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -27,7 +30,7 @@
           </ul>
         </li>
         <li class="nav-item">
-          <a class="nav-link disabled" *ngIf="_usuarioService.obtenerIdentidad() != undefined" >{{ _usuarioService.obtenerIdentidad().nombre }}</a>
+          <a class="nav-link disabled" *ngIf="_usuarioService.obtenerIdentidad()">{{ _usuarioService.obtenerIdentidad().nombre }}</a>
         </li>
       </ul>
       <form class="d-flex">

@@ -9,7 +9,11 @@ import { RegistroComponent } from './components/registro/registro.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { EjemploComponent } from './components/ejemplo/ejemplo.component';
 import { FormsModule } from '@angular/forms';
-import { DetalleProductoComponent } from './components/detalle-producto/detalle-producto.component';
+import { VerProductoComponent } from './components/ver-producto/ver-producto.component';
+import { ChartsModule } from '@rinminase/ng-charts';
+import { GraficasComponent } from './components/graficas/graficas.component';
+import { InicioUsuarioComponent } from './components/inicio-usuario/inicio-usuario.component';
+import { IncioAdminComponent } from './components/incio-admin/incio-admin.component';
 
 
 
@@ -20,13 +24,17 @@ import { DetalleProductoComponent } from './components/detalle-producto/detalle-
     RegistroComponent,
     NavbarComponent,
     EjemploComponent,
-    DetalleProductoComponent
+    VerProductoComponent,
+    GraficasComponent,
+    InicioUsuarioComponent,
+    IncioAdminComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

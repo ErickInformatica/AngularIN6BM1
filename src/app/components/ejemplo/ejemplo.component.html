@@ -1,11 +1,11 @@
 <!-- <h1>{{ title }}</h1> -->
 
 <!-- <ul> -->
-  <!-- <li *ngFor="let pers of personas">
+<!-- <li *ngFor="let pers of personas">
     <a *ngIf="pers.edad >= 18" >{{ pers.nombre }}</a>
     <ng-container *ngIf="pers.edad >= 18"> {{pers.nombre}} </ng-container>
   </li> -->
-  <!-- <ng-container *ngFor="let pers of personas">
+<!-- <ng-container *ngFor="let pers of personas">
     <li *ngIf="pers.edad >= 18">{{ pers.nombre }}</li>
   </ng-container>
 </ul> -->
@@ -31,13 +31,15 @@
 
         </div>
         <div class="card-footer text-muted">
-          <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+          <button class="btn btn-primary" *ngIf="_usuarioService.obtenerIdentidad().rol === 'USUARIO'"> Agregar Carrito </button>
+          <div class="btn-group" role="group" aria-label="Basic mixed styles example"
+          *ngIf="_usuarioService.obtenerIdentidad().rol === 'ADMIN'">
             <button type="button" class="btn btn-danger" (click)="deleteProductos(prod._id)">Eliminar</button>
-            <button class="btn btn-warning" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample"
-            aria-controls="offcanvasExample" (click)="getProductoId(prod._id)">
+            <button type="button" class="btn btn-warning" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample"
+              aria-controls="offcanvasExample" (click)="getProductoId(prod._id)">
               Editar
             </button>
-            <button class="btn btn-success" type="button" [routerLink]="['/detalleProducto', prod._id]">Ver</button>
+            <button type="button" class="btn btn-success" [routerLink]="['/verProducto', prod._id]">Ver</button>
           </div>
         </div>
       </div>
@@ -60,17 +62,17 @@
           <div class="mb-3">
             <label for="inputNombre" class="form-label">Nombre</label>
             <input type="text" class="form-control" id="inputNombre" name="nombre" #nombre="ngModel"
-            [(ngModel)]="productoModelPost.nombre">
+              [(ngModel)]="productoModelPost.nombre">
           </div>
           <div class="mb-3">
             <label for="inputCantidad" class="form-label">Cantidad</label>
             <input type="text" class="form-control" id="inputCantidad" name="cantidad" #cantidad="ngModel"
-            [(ngModel)]="productoModelPost.cantidad">
+              [(ngModel)]="productoModelPost.cantidad">
           </div>
           <div class="mb-3">
             <label for="inputPrecio" class="form-label">Precio</label>
             <input type="text" class="form-control" id="inputPrecio" name="precio" #precio="ngModel"
-            [(ngModel)]="productoModelPost.precio">
+              [(ngModel)]="productoModelPost.precio">
           </div>
         </form>
       </div>
@@ -83,7 +85,7 @@
 </div>
 
 
-<!-- offCanvas Editar Producto -->
+<!-- OffCanvas Editar Producto -->
 <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
   <div class="offcanvas-header">
     <h5 class="offcanvas-title" id="offcanvasExampleLabel">Editar Producto</h5>
@@ -108,10 +110,10 @@
       </div>
       <div class="mb-3">
         <label for="inputPrecio" class="form-label">Precio Producto</label>
-        <input type="number" class="form-control" id="inputPrecio" name="precio" #precio="ngModel"
+        <input type="text" class="form-control" id="inputPrecio" name="precio" #precio="ngModel"
         [(ngModel)]="productoModelGetId.precio">
       </div>
-      <button class="btn btn-success" data-bs-dismiss="offcanvas" (click)="putProductos()">Editar Producto</button>
+      <button class="btn btn-success" (click)="putProducto()" data-bs-dismiss="offcanvas">Editar Producto</button>
     </form>
   </div>
 </div>

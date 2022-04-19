@@ -68,14 +68,13 @@ export class LoginComponent implements OnInit {
   }
 
   login(){
-    this._usuarioService.login(this.usuarioModel, "false").subscribe(
+    this._usuarioService.login(this.usuarioModel).subscribe(
       (response)=>{
         this.getTokenPromesa().then(respuesta=>{
           localStorage.setItem("identidad", JSON.stringify(response.usuario))
 
-          this._router.navigate(['/ejemplo']);
+          this._router.navigate(['/usuario/ejemplo']);
         })
-
       },
       (error)=>{
         console.log(<any>error);

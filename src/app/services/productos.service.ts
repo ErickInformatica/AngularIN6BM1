@@ -24,7 +24,7 @@ export class ProductosService {
     return this._http.get(this.url + '/productos/' + id, { headers: this.headersVariable })
   }
 
-  agregarProducto(modeloProducto: Producto): Observable<any> {
+  agregarProducto(modeloProducto: Producto, token): Observable<any> {
     let parametros = JSON.stringify(modeloProducto);
 
     return this._http.post(this.url + '/agregarProductos', parametros, {headers: this.headersVariable})
@@ -33,7 +33,7 @@ export class ProductosService {
   editarProducto(modeloProducto: Producto): Observable<any> {
     let parametros = JSON.stringify(modeloProducto);
 
-    return this._http.put(this.url + '/editarProductos/' + modeloProducto._id, parametros, {headers: this.headersVariable})
+    return this._http.put(this.url + '/editarProductos/' + modeloProducto._id, parametros, { headers: this.headersVariable})
   }
 
   eliminarProducto(id : String): Observable<any> {
